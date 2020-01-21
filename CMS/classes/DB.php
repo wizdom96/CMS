@@ -6,7 +6,9 @@ class DB{
      $_query,
      $_error = false,   
      $_results,
-     $_count = 0;
+     $_count = 0,
+     $users_class='';
+     
 
      private function __construct() {
          try {
@@ -15,6 +17,10 @@ class DB{
          } catch (PDOException $e){
              die($e->getMessage());
          }
+        }
+        public function __toString() {
+
+            return (string)$this->users_class;
         }
 
          public static function getInstance() {
@@ -67,6 +73,7 @@ class DB{
             }
             return false;
         }
+     
         public function get($table, $where){
             return $this->action('SELECT *', $table, $where); 
             
@@ -85,7 +92,12 @@ class DB{
     return $this->results()[0];
     
     }
-    
+    public function last(){
+
+        return end($this->_results);
+    }
+  
+ 
     public function insert($table, $fields = array()){
         if(count($fields)) {
             $keys = array_keys($fields);
@@ -99,7 +111,7 @@ class DB{
                 $x++;
             }
 
-            $sql = "INSERT INTO users (`" . implode('`, `', $keys)  . "`) VALUES ({$values})";
+            $sql = "INSERT INTO {$table} (`" . implode('`, `', $keys)  . "`) VALUES ({$values})";
 
             if (!$this->query($sql, $fields)->error()){
                 return true;
