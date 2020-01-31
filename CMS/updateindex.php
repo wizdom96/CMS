@@ -18,8 +18,8 @@ require './core/updateindexcontent.php';
 <html>
 <nav class="navbar navbar-light bg-light">
   <form class="form-inline">
-    <button class="btn btn-outline-success" type="button" ><a href="logout.php" >LOGIN</a></button>
-    <button class="btn btn-outline-success" type="button"><a href="register.php" >REGISTER</a></button>
+    <button class="btn btn-outline-success" type="button" ><a href="logout.php" >LOGOUT</a></button>
+    <button class="btn btn-outline-success" type="button"><a href="editindex.php" >BACK</a></button>
   </form>
 </nav>
 <body>
